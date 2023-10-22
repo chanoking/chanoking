@@ -1,4 +1,28 @@
 ### Hi there 👋
+![header](https://capsule-render.vercel.app/api?type=Waving&text=Backend)
+
+####  :wave: Welcome my github profile !
+
+  
+ <br/>
+ <br/>
+  
+####  :clipboard: Once I've Used 
+  
+ <br/>
+<img src="https://img.shields.io/badge/NESTJS-F80000?style=for-the-badge&logo=nestjs&logoColor=black">
+<img src="https://img.shields.io/badge/TypeScript-007396?style=for-the-badge&logo=typescript&logoColor=black">
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MYSQL&logoColor=black">
+<img src="https://img.shields.io/badge/Prisma-2C2255?style=for-the-badge&logo=prisma&logoColor=black">
+<img src="https://img.shields.io/badge/Redis-F70000?style=for-the-badge&logo=redis&logoColor=black">
+
+  <br/>
+  
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=893107&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+  
+[![Velog's GitHub stats](https://velog-readme-stats.vercel.app/api?name=somm&color=dark)](https://velog.io/@somm)
+</div>
+
 
 <!--
 **chanoking/chanoking** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
@@ -14,4 +38,3 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
-<a href="버튼을 눌렀을 때 이동할 링크" target="_blank"><img src="https://img.shields.io/badge/nestjs-배경색?style=flat-square&logo=appveyor&logoColor=#E0234E"/></a>
