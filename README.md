@@ -1,7 +1,7 @@
 ### Hi there 👋
 ![header](https://capsule-render.vercel.app/api?type=Waving&text=Backend)
 
-####  :wave: Welcome my github profile ! I'm mostly using nestjs based on typescript 🫶
+####  :wave: Welcome to my github profile ! I'm mostly using nestjs based on typescript 🫶
 
   
  <br/>
