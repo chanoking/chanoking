@@ -19,7 +19,7 @@
   <br/>
   
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=chanoking&layout=compact)](https://github.com/chanoking/github-readme-stats)
-  
+	<img src="https://github-readme-stats.vercel.app/api?username=chanoking&show_icons=true">  
 
 
 
