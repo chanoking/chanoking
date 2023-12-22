@@ -1,5 +1,5 @@
 ### Hi there 👋
-![header](https://capsule-render.vercel.app/api?type=Waving&text=기본에 지독하게 파고드는 개발자)
+![header](https://capsule-render.vercel.app/api?type=Waving&text="기본에 지독하게 파고드는 개발자")
 
 ####  :wave: Welcome to my github profile ! I'm mostly using nestjs based on typescript 🫶
 
