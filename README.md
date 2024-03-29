@@ -2,6 +2,7 @@
 ![header](https://capsule-render.vercel.app/api?type=Waving&text=softwareengineer)
 
 ####  :wave: Welcome to my github profile ! I'm mostly using nestjs based on typescript 🫶
+####  :wave: I'm ashamed to say that I'm a software engineer. very, very, very. But, I want to try to do my best to be closer to it.
 
 
  <br/>
