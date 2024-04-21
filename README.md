@@ -4,6 +4,8 @@
 ####  :wave: Welcome to my github profile ! I'm mostly using nestjs based on typescript 🫶
 ####  :wave: I'm ashamed to say that I'm a software engineer. very, very, very. But, I want to try to do my best to be closer to it.
 
+#### :wave: I believe that second chances will form the best results. I'm under the starts and I would think they would be linear in the future for sure. I'll do my best so that 0 to 1.</p>
+
 
  <br/>
  <br/>
