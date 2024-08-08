@@ -7,3 +7,14 @@ const solution = (binomial) => {
 // const solution = (binomial) => {
 //     return Number("43 + 12")
 // }
+
+// const solution = (binomial) => {
+//     const obj = {
+//         "+" : (a, b) => a + b,
+//         "-" : (a, b) => a - b,
+//         "*" : (a, b) => a * b
+//     }
+    
+//     const [first, medium, last] = binomial.split(' ');
+//     return obj[medium](first, last);
+// }
