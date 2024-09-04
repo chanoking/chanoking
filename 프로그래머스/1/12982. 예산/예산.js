@@ -29,21 +29,27 @@
 //     return result;
 // }
 
+// const solution = (d, budget) => {
+//     const sortedD = d.sort((a,b) => a - b);
+//     let result = 0;
+    
+//     for(let i = 0; i < sortedD.length; i++){
+//         if(budget >= sortedD[i]){
+//             result++;
+//             budget -= sortedD[i];
+//         }
+//     }
+    
+//     return result;
+// }
+
 const solution = (d, budget) => {
-    const sortedD = d.sort((a,b) => a - b);
-    let result = 0;
-    
-    for(let i = 0; i < sortedD.length; i++){
-        if(budget >= sortedD[i]){
-            result++;
-            budget -= sortedD[i];
-        }
-    }
-    
-    return result;
+    return d.sort((a,b) => a-b).reduce((count,curr) => {
+        count += (budget >= curr)
+        budget -= curr;
+        return count;
+        },0)
 }
-
-
 
 
 
