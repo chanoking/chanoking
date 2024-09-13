@@ -157,41 +157,41 @@
 //     return Object.values(mailCount);
 // };
 
-const solution = (user_id, reports, k) => {
-    const mailToUser = {};
-    const reportCount = {};
-    const reporters = {};
+// const solution = (user_id, reports, k) => {
+//     const mailToUser = {};
+//     const reportCount = {};
+//     const reporters = {};
     
-    user_id.forEach((user) => {
-        mailToUser[user] = 0;
-        reportCount[user] = 0;
-    });
+//     user_id.forEach((user) => {
+//         mailToUser[user] = 0;
+//         reportCount[user] = 0;
+//     });
     
-    reports.forEach((report) => {
-        const [reporter, opponent] = report.split(' ');
+//     reports.forEach((report) => {
+//         const [reporter, opponent] = report.split(' ');
         
-        if(!reporters[reporter]){
-            reporters[reporter] = new Set();
-        };
+//         if(!reporters[reporter]){
+//             reporters[reporter] = new Set();
+//         };
         
-        if(!reporters[reporter].has(opponent)){
-            reporters[reporter].add(opponent);
-            reportCount[opponent] += 1;
-        };
-    });
+//         if(!reporters[reporter].has(opponent)){
+//             reporters[reporter].add(opponent);
+//             reportCount[opponent] += 1;
+//         };
+//     });
     
-    user_id.forEach((opponent) => {
-        if(reportCount[opponent] >= k){
-            user_id.forEach((reporter) => {
-                if(reporters[reporter] && reporters[reporter].has(opponent)){
-                    mailToUser[reporter] += 1;
-                };
-            });
-        };
-    });
+//     user_id.forEach((opponent) => {
+//         if(reportCount[opponent] >= k){
+//             user_id.forEach((reporter) => {
+//                 if(reporters[reporter] && reporters[reporter].has(opponent)){
+//                     mailToUser[reporter] += 1;
+//                 };
+//             });
+//         };
+//     });
     
-    return Object.values(mailToUser);
-}
+//     return Object.values(mailToUser);
+// }
 
 // const solution = (id_list, reports, k) => {
 //     const mailCount = {}; // 각 유저가 받을 메일 수
@@ -234,6 +234,69 @@ const solution = (user_id, reports, k) => {
 
 //     return Object.values(mailCount); // 메일 받은 횟수를 배열로 반환
 // };
+
+
+// const solution = (id_list, reports, k) => {
+//     const mailToUser = {};
+//     const reportCount = {};
+//     const reporters = {};
+    
+//     id_list.forEach((id) => {
+//         mailToUser[id] = 0;
+//         reportCount[id] = 0;
+//     });
+    
+//     reports.forEach((report) => {
+//         const [reporter, opponent] = report.split(' ');
+        
+//         if(!reporters[reporter]){
+//             reporters[reporter] = new Set();
+//         };
+        
+//         if(!reporters[reporter].has(opponent)){
+//             reporters[reporter].add(opponent);
+//             reportCount[opponent] += 1;
+//         };
+//     });
+    
+//     id_list.forEach((opponent) => {
+//         if(reportCount[opponent] >= k){
+//             id_list.forEach((reporter) => {
+//                 if(reporters[reporter] && reporters[reporter].has(opponent)){
+//                     mailToUser[reporter] += 1;
+//                 };
+//             });
+//         };
+//     });
+    
+//     return Object.values(mailToUser);
+// };
+
+const solution = (id_list, report, k) => {
+    const reports = [...new Set(report)].map((v) =>{return v.split(' ')});
+    
+    const counts = new Map();
+    
+    for(const bad of reports){
+        counts.set(bad[1], counts.get(bad[1])+1||1);
+    };
+    
+    const good = new Map();
+    
+    for(const report of reports){
+        if(counts.get(report[1])>=k){
+            good.set(report[0],good.get(report[0])+1||1);
+        };
+    };
+    
+    let answer = id_list.map(a => good.get(a)||0);
+    
+    return answer;
+    
+    
+    
+}
+
 
 
 
