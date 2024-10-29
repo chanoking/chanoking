@@ -15,12 +15,47 @@
 //     return result.slice(left, right + 1);
 // }
 
+// const solution = (n, left, right) => {
+//     const result = [];
+//     for (let k = left; k <= right; k++) {
+//         const i = Math.floor(k / n);
+//         const j = k % n;
+//         result.push(Math.max(i, j) + 1);
+//     }
+//     return result;
+// };
+
 const solution = (n, left, right) => {
     const result = [];
-    for (let k = left; k <= right; k++) {
-        const i = Math.floor(k / n);
-        const j = k % n;
-        result.push(Math.max(i, j) + 1);
+    for(let k = left; k <= right; k++){
+        const i = Math.floor(k / n); // 행
+        const j = k % n; //열
+        result.push(Math.max(i,j)+1);
     }
+    
     return result;
-};
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
