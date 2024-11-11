@@ -1,41 +1,26 @@
 const solution = (n, wires) => {
-    const graph = new Map();
-    for(let i = 1; i <= n; i++){
-        graph.set(i, []);
-    }
-    wires.forEach(([u, v]) => {
-        graph.get(u).push(v);
-        graph.get(v).push(u);
+    const g = Array.from({length: n}, () => []);
+    wires.forEach((v) => {
+        g[v[0] - 1].push(v[1] - 1);
+        g[v[1] - 1].push(v[0] - 1);
     })
-    const countNodes = (start, visited) => {
-        const stack = [start];
-        let count = 1;
-        visited[start] = true;
-        while(stack.length){
-            const node = stack.pop();
-            for(let neighbor of graph.get(node)){
-                if(!visited[neighbor]){
-                    visited[neighbor] = true;
-                    count++;
-                    stack.push(neighbor);
-                }
-            }
+    const p = new Array(n).fill(-1);
+    const q = [0];
+    for(let i = 0; i < q.length; i++){
+        const u = q[i];
+        for(let v of g[u])if(v !== p[u]){
+            p[v] = u;
+            q.push(v);
         }
-        return count;
     }
     
-    let minDifference = n;
-    wires.forEach(([u, v]) => {
-        graph.get(u).splice(graph.get(u).indexOf(v), 1);
-        graph.get(v).splice(graph.get(v).indexOf(u), 1);
-        const visited = Array(n + 1).fill(false);
-        let count1 = countNodes(u, visited);
-        let count2 = n - count1;
-        minDifference = Math.min(minDifference, Math.abs(count1 - count2));
-        
-        graph.get(u).push(v);
-        graph.get(v).push(u);
-    })
-    
-    return minDifference;
+    let ans = n;
+    let dp = new Array(n).fill(1);
+    for(let i = q.length; --i > 0;){
+        const v = q[i];
+        dp[p[v]] += dp[v];
+        let a = Math.abs(n - dp[v] * 2);
+        if(a < ans) ans = a;
+    }
+    return ans;
 }
