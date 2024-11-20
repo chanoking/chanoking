@@ -1,16 +1,3 @@
 const solution = (word) => {
-    const list = ["A", "E", "I", "O", "U"];
-    const dictionary = [];
-    const generateWords = (current) => {
-        if(current.length > 5) return;
-        dictionary.push(current);
-        
-        for(let char of list){
-            generateWords(current + char);
-        }
-    }
-    
-    generateWords("");
-    
-    return dictionary.indexOf(word);
+    return word.split('').reduce((r, c, i) => r + [781, 156, 31, 6, 1][i] * ['A', 'E', 'I', 'O', 'U'].indexOf(c) + 1, 0);
 }
