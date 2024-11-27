@@ -1,54 +1,46 @@
 const solution = (orders, course) => {
-    const getCombinations = (str, size) => {
+    const result = [];
+    const getCombinations = (str, combLen) => {
         const result = [];
         const combine = (start, comb) => {
-            if (comb.length === size) {
+            if(combLen === comb.length){
                 result.push(comb.join(''));
                 return;
             }
-            for (let i = start; i < str.length; i++) {
+            
+            for(let i = start; i < str.length; i++){
                 combine(i + 1, [...comb, str[i]]);
             }
-        };
+        }
         combine(0, []);
         return result;
-    };
-
-    const combinationCounts = new Map();
-
-    // 1. 각 손님의 주문에서 조합 생성 및 카운팅
+    }
+    const combinationsCount = new Map();
     orders.forEach(order => {
-        const sortedOrder = order.split('').sort(); // 정렬된 상태로 조합 생성
+        const sortedOrder = order.split('').sort();
         course.forEach(size => {
             const combinations = getCombinations(sortedOrder, size);
             combinations.forEach(comb => {
-                combinationCounts.set(comb, (combinationCounts.get(comb) || 0) + 1);
-            });
-        });
-    });
-
-    // 2. 각 크기별로 최대 반복 횟수를 기준으로 조합 필터링
-    const result = [];
+                combinationsCount.set(comb, (combinationsCount.get(comb) || 0) + 1);
+            })
+        })
+    })
+    
     course.forEach(size => {
         let maxCount = 0;
-        const candidates = [];
-
-        // 해당 크기의 조합 중에서 조건에 부합하는 것을 탐색
-        combinationCounts.forEach((count, comb) => {
-            if (comb.length === size && count >= 2) {
-                if (count > maxCount) {
+        let candidates = [];
+        combinationsCount.forEach((count, comb) => {
+            if(comb.length === size && count >= 2){
+                if(maxCount < count){
                     maxCount = count;
-                    candidates.length = 0; // 초기화
+                    candidates.length = 0;
                     candidates.push(comb);
-                } else if (count === maxCount) {
-                    candidates.push(comb);
+                }else if(maxCount === count){
+                    candidates.push(comb)
                 }
             }
-        });
-
-        result.push(...candidates); // 크기별 가장 많이 등장한 조합 추가
-    });
-
-    return result.sort(); // 전체 결과를 사전순으로 정렬하여 반환
-};
-
+        })
+        result.push(...candidates);
+    })
+    return result.sort();
+}
