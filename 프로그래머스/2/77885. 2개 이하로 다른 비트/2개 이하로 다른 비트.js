@@ -33,31 +33,50 @@
 //     });
 // };
 
+// function solution(numbers) {
+//     return numbers.map((n, i) => {
+//         const binary = n.toString(2).split('');
+//         const lastZeroIndex = binary.lastIndexOf('0');
+
+//         if (lastZeroIndex === -1) {
+//             // 111 => 1011
+//             binary.splice(1, 0, '0');
+//         } else {
+//             const lastIndex = binary.length - 1;
+//             if (lastIndex === lastZeroIndex) {
+//                 // 100 => 101
+//                 binary[lastZeroIndex] = '1';
+//             } else {
+//                 // 101 => 110
+//                 [
+//                     binary[lastZeroIndex],
+//                     binary[lastZeroIndex + 1]
+//                 ] = [
+//                     binary[lastZeroIndex + 1],
+//                     binary[lastZeroIndex]
+//                 ]
+//             }
+//         }
+
+//         return parseInt(binary.join(''), 2);
+//     });
+// }
+
+// function solution(numbers) {
+//     return numbers.map(v => {
+//         if (v % 2 === 0) return v + 1; // 짝수인 경우 바로 다음 수 반환
+//         let bit = 1;
+//         while (v & bit) bit <<= 1;    // 가장 낮은 `0` 비트를 찾음
+//         return v + bit - (bit >> 1); // `0`을 `1`로, 바로 오른쪽 `1`을 `0`으로 변경
+//     });
+// }
+
 function solution(numbers) {
-    return numbers.map((n, i) => {
-        const binary = n.toString(2).split('');
-        const lastZeroIndex = binary.lastIndexOf('0');
-
-        if (lastZeroIndex === -1) {
-            // 111 => 1011
-            binary.splice(1, 0, '0');
-        } else {
-            const lastIndex = binary.length - 1;
-            if (lastIndex === lastZeroIndex) {
-                // 100 => 101
-                binary[lastZeroIndex] = '1';
-            } else {
-                // 101 => 110
-                [
-                    binary[lastZeroIndex],
-                    binary[lastZeroIndex + 1]
-                ] = [
-                    binary[lastZeroIndex + 1],
-                    binary[lastZeroIndex]
-                ]
-            }
-        }
-
-        return parseInt(binary.join(''), 2);
+    return numbers.map(v => {
+        v = BigInt(v); // BigInt로 변환
+        if (v % 2n === 0n) return v + 1n; // 짝수 처리
+        let bit = 1n;
+        while (v & bit) bit <<= 1n; // 가장 낮은 `0` 비트를 찾음
+        return Number(v + bit - (bit >> 1n)); // 결과를 다시 Number로 변환
     });
 }
