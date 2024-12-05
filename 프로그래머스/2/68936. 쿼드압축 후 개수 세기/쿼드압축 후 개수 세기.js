@@ -1,36 +1,32 @@
-const compression = (arr) => {
-    const flatted = arr.flat();
-    const allEqual = flatted.every(v => v === flatted[0]);
-    return allEqual ? [flatted[0]] : arr;
-}
-
-const divide = (arr) => {
-    if(arr.length === 1) return arr;
-    const result = [];
-    const size = arr.length;
-    const halfSize = size / 2;
-    for(let i = 0; i < size; i += halfSize){
-        for(let j = 0; j < size; j += halfSize){
-            const subMatrix = [];
-            for(let x = i; x < i + halfSize; x++){
-                subMatrix.push(arr[x].slice(j, j + halfSize))
-            }
-            result.push(...divide(compression(subMatrix)));
-        }
-    }
-    return result;
-}
-
-const count = (arr) => {
-    const zero = arr.filter(v => v === 0).length;
-    const one = arr.filter(v => v === 1).length;
-    return [zero, one];
-}
-
 const solution = (arr) => {
-    if(compression(arr).length === 1) return count(compression(arr));
-    const divided = divide(arr);
-    const counted = count(divided);
-    
-    return counted;
+    const quadZip = (row, col, n) => {
+        if(n < 2) return arr[row][col] ? [0, 1] : [1, 0];
+        let cnt0 = 0, cnt1 = 0; n >>= 1;
+        for(let [i, j] of [[0, 0], [0, 1], [1, 0], [1, 1]]){
+            const [zero, one] = quadZip(row + i * n, col + j * n, n);
+            cnt0 += zero;
+            cnt1 += one;
+        }
+        if(cnt0 === 0) return [0, 1];
+        if(cnt1 === 0) return [1, 0];
+        
+        return [cnt0, cnt1];
+    }
+    return quadZip(0, 0, arr.length);
 }
+
+// function solution(arr) {
+//     const quadZip = (row, col, n) => {
+//         if(n < 2) return arr[row][col] ? [0, 1] : [1, 0];
+//         let cnt0 = 0, cnt1 = 0; n >>= 1;
+//         for(let [i, j] of [[0,0],[0,1],[1,0],[1,1]]) {
+//             let [zero, one] = quadZip(row+i*n, col+j*n, n);
+//             cnt0 += zero;
+//             cnt1 += one;
+//         }
+//         if(cnt0 === 0) return [0, 1];
+//         if(cnt1 === 0) return [1, 0];
+//         return [cnt0, cnt1];
+//     }
+//     return quadZip(0, 0, arr.length);
+// }
