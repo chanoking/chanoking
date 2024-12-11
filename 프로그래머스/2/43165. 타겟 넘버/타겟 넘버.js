@@ -1,21 +1,13 @@
-function solution(nums, target) {
-    let count = 0;
-
-    function backtrack(index, total) {
-        if (index === nums.length) {
-            if (total === target) {
-                count++;
-            }
-            return;
+const solution = (numbers, target) => {
+    const sum = numbers.reduce((acc, cur) => acc + cur);
+    if((sum + target) % 2 !== 0 || target > numbers) return 0;
+    const newTarget = (sum + target) / 2;
+    const dp = Array(newTarget + 1).fill(0);
+    dp[0] = 1;
+    for(let num of numbers){
+        for(let j = newTarget; j >= num; j--){
+            dp[j] += dp[j - num]
         }
-
-        // +를 사용하는 경우
-        backtrack(index + 1, total + nums[index]);
-        // -를 사용하는 경우
-        backtrack(index + 1, total - nums[index]);
     }
-
-    backtrack(0, 0);
-    return count;
+    return dp[newTarget];
 }
-
