@@ -65,21 +65,38 @@
 //     }
 // }
 
+// const solution = (msg) => {
+//     let stack = [];
+//     const capitalAlphabets = Array.from({length : 26}, (_, i) => String.fromCharCode(65 + i));
+//     const result = [];
+//     for(let i = 0; i < msg.length; i++){
+//         stack.push(msg[i]);
+//         if(capitalAlphabets.includes(stack.join(''))) continue;
+//         capitalAlphabets.push(stack.join(''));
+//         stack.pop();
+//         const index = capitalAlphabets.indexOf(stack.join('')) + 1;
+//         result.push(index);
+//         stack = []
+//         i--;
+//     }
+//     const index = capitalAlphabets.indexOf(stack.join('')) + 1;
+//     result.push(index);
+//     return result;
+// }
+
 const solution = (msg) => {
-    let stack = [];
-    const capitalAlphabets = Array.from({length : 26}, (_, i) => String.fromCharCode(65 + i));
-    const result = [];
-    for(let i = 0; i < msg.length; i++){
-        stack.push(msg[i]);
-        if(capitalAlphabets.includes(stack.join(''))) continue;
-        capitalAlphabets.push(stack.join(''));
-        stack.pop();
-        const index = capitalAlphabets.indexOf(stack.join('')) + 1;
-        result.push(index);
-        stack = []
-        i--;
+    const dict = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('').reduce((dict, c, i) => {
+        dict[c] = i + 1;
+        return dict;
+    }, {});
+    dict.nextId = 27;
+    const ans = [];
+    for(let i = 0, j = 0; i < msg.length; i = j){
+        let longest = '';
+        j = msg.length;
+        while(dict[(longest = msg.substring(i, j))] === undefined) j--;
+        ans.push(dict[longest]);
+        dict[longest + msg[j]] = dict.nextId++;
     }
-    const index = capitalAlphabets.indexOf(stack.join('')) + 1;
-    result.push(index);
-    return result;
+    return ans;
 }
