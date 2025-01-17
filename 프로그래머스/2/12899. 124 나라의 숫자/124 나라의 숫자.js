@@ -1,12 +1,15 @@
+// const solution = (n) => {
+//     // const oneTwoFour = ['1', '2', '4'];
+//     // n--;
+//     // let word = '';
+//     // while(n >= 0){
+//     //     word = oneTwoFour[n % 3] + word;
+//     //     n = Math.floor(n / 3) - 1;
+//     // }
+//     // return word;
+//     return n;
+// }
+
 const solution = (n) => {
-    const oneTwoFour = ['1', '2', '4'];
-    let word = '';
-    n--; // Convert to zero-based index
-
-    while (n >= 0) {
-        word = oneTwoFour[n % 3] + word; // Map remainder to 'A', 'B', 'C'
-        n = Math.floor(n / 3) - 1;     // Reduce n, accounting for zero-based indexing
-    }
-
-    return word;
-};
+    return n === 0 ? '' : solution(parseInt((n - 1) / 3)) + [1, 2, 4][(n - 1) % 3];
+}
