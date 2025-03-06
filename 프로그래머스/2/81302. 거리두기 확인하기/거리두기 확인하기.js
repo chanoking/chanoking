@@ -21,11 +21,17 @@ const solution = (places) => {
                     return 0;
                 }else if(distance === 2){
                     if(x1 === x2){
-                        if(place[x1][(y2 + y1)/ 2] !== 'X') return 0;
+                        if(place[x1][(y2 + y1) / 2] !== 'X'){
+                            return 0;
+                        }
                     }else if(y1 === y2){
-                        if(place[(x1 + x2) / 2][y1] !== 'X') return 0;
-                    }else{
-                        if(!(place[x1][y2] === 'X' && place[x2][y1] === 'X')) return 0;
+                        if(place[(x1 + x2) / 2][y1] !== 'X'){
+                            return 0;
+                        }
+                    } else{
+                        if(!(place[x1][y2] === 'X' && place[x2][y1] === 'X')){
+                            return 0;
+                        }
                     }
                 }
             }
