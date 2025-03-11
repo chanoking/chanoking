@@ -1,54 +1,30 @@
-function solution(rows, columns, queries) {
-    const matrix = [];
-    let absolute = 1;
-    for(let i = 0; i < rows; i++){
-        const arr = [];
-        for(let j = 0; j < columns; j++){
-            arr.push(absolute++);
-        }
-        matrix.push(arr);
-    }
-
+const solution = (rows, columns, queries) => {
+    const matrix = [...Array(rows)].map((_, pi) => [...Array(columns)].map((_, i) => pi * columns + 1 + i));
     const answer = [];
     queries.forEach(query => {
-        const [x1, y1, x2, y2] = query;
-        let top = x1 - 1, bottom = x2 - 1, left = y1 - 1, right = y2 - 1;
-        let temp, prev, min
-        prev = matrix[top][left];
-        const tempor = [];
-        tempor.push(prev)
-        for(let i = left + 1; i <= right; i++){
-            temp = matrix[top][i];
-            matrix[top][i] = prev;
-            prev = temp;
-            tempor.push(prev);
-        }
-        top++;
-        
-        for(let i = top; i <= bottom; i++){
-            temp = matrix[i][right];
-            matrix[i][right] = prev;
-            prev = temp;
-            tempor.push(prev);
-        }
-        right--;
-        
-        for(let i = right; i >= left; i--){
-            temp = matrix[bottom][i];
-            matrix[bottom][i] = prev;
-            prev = temp;
-            tempor.push(prev);
+        const [x1, y1, x2, y2] = query.map(_ => _ - 1);
+        let temp = matrix[x1][y1], min = matrix[x1][y1];
+        for(let i = x1; i < x2; i++){
+            matrix[i][y1] = matrix[i+1][y1];
+            min = Math.min(min, matrix[i][y1]);
         }
         
-        bottom--;
-        for(let i = bottom; i >= top - 1; i--){
-            temp = matrix[i][left];
-            matrix[i][left] = prev;
-            prev = temp;
-            tempor.push(prev);
+        for(let i = y1; i < y2; i++){
+            matrix[x2][i] = matrix[x2][i+1];
+            min = Math.min(min, matrix[x2][i]);
         }
-        min = Math.min(... tempor);
-        answer.push(min)       
+        
+        for(let i = x2; i > x1; i--){
+            matrix[i][y2] = matrix[i - 1][y2];
+            min = Math.min(min, matrix[i][y2]);
+        }
+        
+        for(let i = y2; i > y1; i--){
+            matrix[x1][i] = matrix[x1][i - 1];
+            min = Math.min(min, matrix[x1][i]);
+        }
+        matrix[x1][y1 + 1] = temp;
+        answer.push(min);
     })
     return answer;
 }
