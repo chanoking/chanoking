@@ -1,10 +1,9 @@
 const solution = (w) => {
-    if(w === '') return '';
-    
+    if(w === '') return w;
     let u, v, cnt = 0;
     
     for(let i = 0; i < w.length; i++){
-        (w[i] === ")") ? cnt++ : cnt--;
+        w[i] === ')' ? cnt++ : cnt--;
         if(cnt === 0){
             u = w.slice(0, i+1);
             v = w.slice(i+1);
@@ -22,12 +21,12 @@ const solution = (w) => {
     }
     return u + solution(v);
 }
-
 const isPerfect = (str) => {
-    if(str[0] !== "(" || str[str.length - 1] !== ")") return false;
-    let cnt = 0;
-    for(let i = 0; i < str.length; i++){
-        str[i] === ")" ? cnt++ : cnt--;
+        return (str[0] === ")" || str[str.length - 1] === "(") ? false : true;
+        let cnt = 0;
+        for(let i = 0; i < str.length; i ++){
+            str[i] === ")" ? cnt++ : cnt--;
+        }
+        
+        return cnt === 0;
     }
-    return cnt === 0 ? true : false;
-}
