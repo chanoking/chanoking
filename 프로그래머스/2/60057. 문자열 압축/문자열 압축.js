@@ -1,22 +1,20 @@
 const solution = (s) => {
-    const arr = [];
-    let min = s.length;
-    for(let i = 1; i <= Math.floor(s.length / 2); i++){
+    let minLen = s.length;
+    for(let len = 1; len <= Math.min(s.length / 2); len++){
         let compressed = "";
-        let prev = s.slice(0, i);
+        let prev = s.slice(0, len);
         let count = 1;
-        for(let k = i; k < s.length; k += i){
-            let curr = s.slice(k, k + i);
-            if(prev === curr){
-              count++;  
-            }else {
-                compressed += count === 1 ? prev : `${count}${prev}`;
-                prev = curr;
+        for(let i = len; i < s.length; i += len){
+            let curr = s.slice(i, i + len);
+            if(curr === prev) count++;
+            else {
+                compressed += count === 1 ? prev : count+prev;
                 count = 1;
+                prev = curr;
             }
         }
-        compressed += count === 1 ? prev : `${count}${prev}`;
-        min = Math.min(min, compressed.length);
+        compressed += count === 1 ? prev : count+prev;
+        minLen = Math.min(minLen, compressed.length);
     }
-    return min;
+    return minLen;
 }
