@@ -1,42 +1,29 @@
-const solution = (m, musicinfos) => {
-  // 음표를 배열로 변환하는 함수 (정규식 활용)
+const solution = (m, musicInfo) => {
   const parseNotes = (str) => str.match(/[A-G]#?/g);
-
-  const mArr = parseNotes(m);
+  const parseM = parseNotes(m);
   let answer = "(None)";
   let maxPlayTime = 0;
+  for (let info of musicInfo) {
+    const [start, end, title, notes] = info.split(",");
+    const [sHour, sMin] = start.split(":").map(Number);
+    const [eHour, eMin] = end.split(":").map(Number);
+    const playedTime = eHour * 60 + eMin - (sHour * 60 + sMin);
+    const parsedNotes = parseNotes(notes);
 
-  for (const info of musicinfos) {
-    let [start, end, title, note] = info.split(",");
-
-    // 시간 계산 (분 단위)
-    const [sh, sm] = start.split(":").map(Number);
-    const [eh, em] = end.split(":").map(Number);
-    const playTime = eh * 60 + em - (sh * 60 + sm);
-
-    // 악보 파싱
-    const noteArr = parseNotes(note);
-
-    // 재생된 악보 생성 (playTime 길이만큼 반복)
-    const played = Array.from(
-      { length: playTime },
-      (_, i) => noteArr[i % noteArr.length]
+    const playedNotes = Array.from(
+      { length: playedTime },
+      (_, i) => parsedNotes[i % parsedNotes.length]
     );
 
-    // 패턴 검색
-    for (let i = 0; i <= played.length - mArr.length; i++) {
-      if (mArr.every((v, j) => played[i + j] === v)) {
-        // 더 긴 곡이면 갱신
-        if (playTime > maxPlayTime) {
-          maxPlayTime = playTime;
+    for (let i = 0; i <= playedNotes.length - parseM.length; i++) {
+      if (parseM.every((note, idx) => note === playedNotes[i + idx])) {
+        if (maxPlayTime < playedTime) {
+          maxPlayTime = playedTime;
           answer = title;
         }
-        break; // 하나 찾으면 더 검사할 필요 없음
+        break;
       }
     }
   }
-
   return answer;
 };
-
-
