@@ -3,7 +3,7 @@
 
 ####  :wave: Welcome to my github profile ! I'm mostly using nestjs based on typescript 🫶
 
-#### :wave: I believe that second chances will form the best results. I'm under the stars about which i think they would be linear in the future for sure. I'll do my best so that 0 to 1.</p>
+#### :wave: I believe that second chances can bring the best results. Right now I feel like I’m under the stars, and I think the future will unfold in a straight, steady line. I’ll do my best to go from 0 to 1.</p>
 
 
  <br/>
